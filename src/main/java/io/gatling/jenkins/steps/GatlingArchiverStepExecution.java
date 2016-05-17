@@ -15,13 +15,18 @@
  */
 package io.gatling.jenkins.steps;
 
+import hudson.model.TaskListener;
 import org.jenkinsci.plugins.workflow.steps.AbstractSynchronousNonBlockingStepExecution;
+import org.jenkinsci.plugins.workflow.steps.StepContextParameter;
 
 public class GatlingArchiverStepExecution extends AbstractSynchronousNonBlockingStepExecution<Void> {
 
+    @StepContextParameter
+    private transient TaskListener listener;
+
     @Override
     protected Void run() throws Exception {
-        System.out.println("Running Gatling Archiver step");
+        listener.getLogger().println("Running Gatling archiver step.");
         return null;
     }
 }

@@ -108,10 +108,9 @@
 			<artifactId>workflow-cps</artifactId>
 			<version>1.14</version>
 		</dependency>
-		<!-- TODO: may just be using this for testing, can probably remove -->
 		<dependency>
 			<groupId>org.jenkins-ci.plugins.workflow</groupId>
-			<artifactId>workflow-basic-steps</artifactId>
+			<artifactId>workflow-step-api</artifactId>
 			<version>1.14</version>
 		</dependency>
 	</dependencies>

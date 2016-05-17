@@ -19,20 +19,21 @@ import static io.gatling.jenkins.PluginConstants.*;
 
 import hudson.model.Action;
 import hudson.model.AbstractBuild;
+import hudson.model.Run;
 
 import java.util.List;
 
 public class GatlingBuildAction implements Action {
 
-  private final AbstractBuild<?, ?> build;
+  private final Run<?, ?> build;
   private final List<BuildSimulation> simulations;
 
-  public GatlingBuildAction(AbstractBuild<?, ?> build, List<BuildSimulation> sims) {
+  public GatlingBuildAction(Run<?, ?> build, List<BuildSimulation> sims) {
     this.build = build;
     this.simulations = sims;
   }
 
-  public AbstractBuild<?, ?> getBuild() {
+  public Run<?, ?> getBuild() {
     return build;
   }
 

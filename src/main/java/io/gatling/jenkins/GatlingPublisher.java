@@ -109,15 +109,24 @@ public class GatlingPublisher extends Recorder implements SimpleBuildStep {
     List<BuildSimulation> simsToArchive = new ArrayList<BuildSimulation>();
 
     File allSimulationsDirectory = new File(rootDir, "simulations");
-    if (!allSimulationsDirectory.exists())
-      allSimulationsDirectory.mkdir();
+    if (!allSimulationsDirectory.exists()) {
+      boolean mkdirResult = allSimulationsDirectory.mkdir();
+      if (! mkdirResult) {
+        logger.println("Could not create simulations archive directory '" + allSimulationsDirectory + "'");
+        return Collections.emptyList();
+      }
+    }
 
     for (FilePath reportToArchive : reportsToArchive) {
       String name = reportToArchive.getName();
       int dashIndex = name.lastIndexOf('-');
       String simulation = name.substring(0, dashIndex);
       File simulationDirectory = new File(allSimulationsDirectory, name);
-      simulationDirectory.mkdir();
+      boolean mkdirResult = simulationDirectory.mkdir();
+      if (! mkdirResult) {
+        logger.println("Could not create simulation archive directory '" + simulationDirectory + "'");
+        return Collections.emptyList();
+      }
 
       FilePath reportDirectory = new FilePath(simulationDirectory);
 
@@ -159,7 +168,7 @@ public class GatlingPublisher extends Recorder implements SimpleBuildStep {
 
     @Override
     public String getDisplayName() {
-      return Messages.Title();
+      return Messages.title();
     }
 
     @Initializer(before = InitMilestone.PLUGINS_STARTED)

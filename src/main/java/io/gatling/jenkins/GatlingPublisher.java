@@ -84,11 +84,6 @@ public class GatlingPublisher extends Recorder implements SimpleBuildStep {
     return BuildStepMonitor.BUILD;
   }
 
-  @Override
-  public Action getProjectAction(AbstractProject<?, ?> project) {
-    return new GatlingProjectAction(project);
-  }
-
   private List<BuildSimulation> saveFullReports(FilePath workspace, File rootDir) throws IOException, InterruptedException {
     FilePath[] files = workspace.list("**/global_stats.json");
     List<FilePath> reportFolders = new ArrayList<FilePath>();

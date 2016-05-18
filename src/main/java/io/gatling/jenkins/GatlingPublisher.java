@@ -156,7 +156,6 @@ public class GatlingPublisher extends Recorder implements SimpleBuildStep {
     return reportsFromThisBuild;
   }
 
-
   @Extension
   public static class DescriptorImpl extends BuildStepDescriptor<Publisher> {
 
